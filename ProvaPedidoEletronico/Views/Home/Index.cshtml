@@ -1,0 +1,83 @@
+﻿@model ProvaPedidoEletronico.Models.HomeIndexModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Tabela Fipe</h2>
+
+<script>
+    function showSpecs() { 
+    var show = document.getElementById('especificacoesDoCarro');
+
+        show.style.display = 'block';
+
+    }
+    
+</script>
+
+<select>
+    @foreach (var item in Model.marca)
+    {
+        <option>@item.nome</option>
+    }
+</select>
+
+<select>
+    @foreach (var item in Model.modelo.modelos)
+    {
+        <option>@item.nome</option>
+
+    }
+</select>
+
+<select onchange="changeAno()">
+      @foreach (var item in Model.ano)
+      {
+          <option class="@item.codigo" id="ano" value="@item.nome">@item.nome</option>
+      }
+</select>
+
+<input onclick="showSpecs()" id="pesquisar" type="submit" name="name" value="pesquisar" >
+
+<div id="especificacoesDoCarro" style="display:none">
+    <h4>Modelo</h4>
+    @Model.resultado.Modelo
+    <br />
+
+    <h4>Ano</h4>
+    @Model.resultado.AnoModelo
+    <br />
+    <h4>Combustivel</h4>
+    @Model.resultado.Combustivel
+    <br />
+    <h4>Código Fipe</h4>
+    @Model.resultado.CodigoFipe
+    <br />
+    <h4>Marca</h4>
+    @Model.resultado.Marca
+    <br />
+    <h4>Sigla Combustível</h4>
+    @Model.resultado.SiglaCombustivel
+    <br />
+    <h4>Mes Referencia</h4>
+    @Model.resultado.MesReferencia
+    <br />
+    <h4>Tipo Veículo</h4>
+    @Model.resultado.TipoVeiculo
+
+    <br />
+    <h4>Valor</h4>
+    @Model.resultado.Valor <br />
+
+
+</div>
+<script>function changeAno() {
+    var anoId = document.getElementById('ano');
+    var pickAno = anoId.classList.value;
+        console.log(pickAno);
+    }</script>
+
+
+
+
+
